@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A very MEAN stack</title>
+    <script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/scripts/app.min.js" ></script>
+  </head>
+  <body>
+    <!--      Angular
+    <div>
+      -->
+      <h1>A really, really MEAN Stack Application using jQuery instead</h1>
+      <!-- <p ng-show="cat.name">Your new cat's name is: {{ cat.name }}</p>
+      <p ng-hide-"cat.name">Enter your new cat's name!</p>
+      <form novalidate>
+        Name: <input type="text" ng-model="cat.name"  /><br/>
+        <input type="submit" ng-click="add(cat)" value="Save" />
+      </form>
+      <h4>Cats</h4>
+      <ul>
+        <li ng-repeat="cat in cats">
+          {{ cat.name }}</li>
+        </li>
+      </ul>
+    </div>      now jQuery-->
+
+    <form id="catForm">
+      <label for="catname">Enter your cat name:</label>
+      <input type="text" id="name" name="name" placeholder="Cat's name"/>
+      <input type="submit" value="Submit your cat" />
+    </form>
+    <p class="typing"></p>
+    <div class="cats"></div>
+  </body>
+</html>
