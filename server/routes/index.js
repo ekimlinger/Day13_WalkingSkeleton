@@ -18,8 +18,24 @@ router.post('/addCat',function(request,response){
     if(err){
       console.log('meow %s',err);
     }
+    console.log(kittyObj);
     response.send(kittyObj.toJSON());
   });
+});
+router.delete('/removeCat',function(request,response){
+  var lostCat = request.body["_id"];
+  console.log("Attempting to remove: ", lostCat);
+  // db.basic_walking_skeleton.remove(lostCat, function(err){
+  //    if(err){
+  //      console.log("meow%s", err)
+  //    }
+  response.send(lostCat);
+
+  });
+//   *********************
+//  TODO: FIGURE OUT HOW THE DELETE CALL WORKS!!!
+//   *********************
+
 });
 
 router.get('/cats', function(request,response){

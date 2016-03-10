@@ -26,7 +26,7 @@ $(document).ready(function(){
       var workingName = $('#name').val();
       $('.typing').text(workingName);
     });
-
+    $('.cats').on('click', '.remove', deleteCats);
     $("#catForm").on("submit", function(event){
       event.preventDefault();
 
@@ -36,18 +36,20 @@ $(document).ready(function(){
       $.each($("#catForm").serializeArray(), function(i, field){
         values[field.name] = field.value;
       });
-      appendACat(values);
+
       $.ajax({
         type: "POST",
         url: "/addCat",
         data: values,
-        success: function(){
+        success: function(data){
           //this clears out the form
+          appendACat(values, data["_id"]);
+          console.log("Id returned from ajax",data["_id"])
           $("#catForm").find("input[type=text]").val("");
         }
       });
-      });
 
+    });
 });
 
 
@@ -63,8 +65,28 @@ function displayDBcats(){
     }
   });
 }
+function deleteCats(event){
+  var $whackCatContainer = $(this).parent();
+  var whackCatName = $(this).parent().data("name");
+  $.ajax({
+    type: "DELETE",
+    url: "/removeCat",
+    data: {"name": whackCatName},
+    success: function(data){
+      console.log("Removed " + data)
+      $whackCatContainer.remove();
+    }
+  });
+
+}
 
 
-function appendACat(cat){
-  $('.cats').append('<h2>'+ cat.name+'</h2>');
+function appendACat(cat, id){
+  $('.cats').append('<div class="feline"></div>');
+  $el = $('.cats').children().last();
+  $el.data("name",cat.name).data("id",id);
+  $el.append('<button class="remove">Remove ' +cat.name+'</button>');
+  $el.append('<h2>'+ cat.name+'</h2>');
+  console.log(id);
+
 }
